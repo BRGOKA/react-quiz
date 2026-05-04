@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/BRGOKA/react-quiz/static/css/main.12f4df24.css",
+    "main.js": "/BRGOKA/react-quiz/static/js/main.28be1d48.js",
+    "index.html": "/BRGOKA/react-quiz/index.html",
+    "main.12f4df24.css.map": "/BRGOKA/react-quiz/static/css/main.12f4df24.css.map",
+    "main.28be1d48.js.map": "/BRGOKA/react-quiz/static/js/main.28be1d48.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.12f4df24.css",
+    "static/js/main.28be1d48.js"
+  ]
+}
