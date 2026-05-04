@@ -91,7 +91,7 @@ function App() {
       <Header />
       <Main>
         {status === "loading" && <Loader />}
-        {status === "error" && <Error dispatch={dispatch} />}
+        {/* {status === "error" && <Error />} */}
         {status === "ready" && (
           <StartScreen dispatch={dispatch} numOfQuestions={numOfQuestions} />
         )}
