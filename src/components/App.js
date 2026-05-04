@@ -7,6 +7,7 @@ import StartScreen from "./StartScreen";
 import Question from "./Question";
 import FinishedScreen from "./FinishedScreen";
 import Progress from "./Progress";
+import fallbackQuestions from "../questions";
 
 const initialState = {
   questions: [],
@@ -22,14 +23,17 @@ function reducer(state, action) {
   switch (action.type) {
     case "dataRecieved":
       return { ...state, questions: action.payload, status: "ready" };
+
     case "dataFailed":
       return { ...state, status: "error" };
+
     case "dataReady":
       return {
         ...state,
         status: "active",
         remainingTime: state.questions.length * SEC_PER_QUESTION,
       };
+
     case "newAnwser":
       const question = state.questions.at(state.index);
       return {
@@ -76,7 +80,10 @@ function App() {
     fetch("http://localhost:8000/questions")
       .then((res) => res.json())
       .then((data) => dispatch({ type: "dataRecieved", payload: data }))
-      .catch((err) => dispatch({ type: "dataFailed" }));
+      .catch((err) => {
+        // Fallback to static import
+        dispatch({ type: "dataRecieved", payload: fallbackQuestions });
+      });
   }, []);
 
   return (
@@ -84,7 +91,7 @@ function App() {
       <Header />
       <Main>
         {status === "loading" && <Loader />}
-        {status === "error" && <Error />}
+        {status === "error" && <Error dispatch={dispatch} />}
         {status === "ready" && (
           <StartScreen dispatch={dispatch} numOfQuestions={numOfQuestions} />
         )}
